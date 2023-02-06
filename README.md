@@ -37,9 +37,9 @@ Have fun (?)
 That's all folks!
 
 ## Sources & Thanks
- - **Picture of Bill Gates** - Getty Images
- - **DooM 1/2 Spritesheet** - Original by ID SOFTWARE, ripped by Dolphman
- - **Music** - *Deltarune Chapter 2 OST: 35 - Knock You Down !!* by Toby Fox
+ - **Picture of Bill Gates** - <a href="https://www.gettyimages.com/detail/news-photo/bill-gates-the-co-founder-of-the-microsoft-company-and-co-news-photo/543265518">Getty Images</a>
+ - **DooM 1/2 Spritesheet** - Original by ID SOFTWARE, <a href="https://www.spriters-resource.com/pc_computer/doomdoomii/sheet/4111/">ripped by Dolphman</a>
+ - **Music** - <a href="https://www.youtube.com/watch?v=4J1sLx2Ileg"><i>Deltarune Chapter 2 OST: 35 - Knock You Down !!</i></a> by Toby Fox
  - **Inspired by** - An image lifted from an unknown textbook (<a href=http://svgalib.org/punchbill.html>original source code</a>):
 <p align=center>
     <a href="https://www.reddit.com/r/funny/comments/n7g8my/bill_gates_being_punched_in_a_textbook_sure/">
