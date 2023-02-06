@@ -52,7 +52,7 @@ void BillGates::Draw() {
         lerp(255, 64, punchTimerProgress)
     );
 
-    SDL_Rect renderQuad = {static_cast<int>(sin(20 * M_PI * punchTimerProgress) * punchTimerProgress * 4), 0, m_textureWidth, m_textureHeight};
+    SDL_Rect renderQuad = {static_cast<int>(sin(20 * M_PI * punchTimerProgress) * punchTimerProgress * 8), 0, m_textureWidth, m_textureHeight};
     SDL_RenderCopy(m_renderer, m_texture, NULL, &renderQuad);
 }
 
