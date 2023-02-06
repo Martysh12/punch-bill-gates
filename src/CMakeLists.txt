@@ -1,6 +1,7 @@
 set(SOURCES
     main.cpp
     constants.cpp
+    game.cpp
 )
 
 add_executable(pbg ${SOURCES})
