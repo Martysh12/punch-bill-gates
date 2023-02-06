@@ -1,8 +1,10 @@
 #pragma once
 
 #include "constants.h"
+#include "billgates.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <cstdlib>
 #include <iostream>
@@ -13,6 +15,10 @@ class Game
     SDL_Renderer* m_renderer;
     SDL_Surface* m_screenSurface;
 
+    Mix_Music* m_music;
+
+    BillGates m_billGates;
+
     bool m_isRunning;
 
 public:
@@ -22,4 +28,6 @@ public:
     void Run();
     void Stop();
     
+    void Update();
+    void Draw();
 };

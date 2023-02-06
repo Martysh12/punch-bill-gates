@@ -1,8 +1,13 @@
 #include "game.h"
 
 Game::Game() : m_isRunning(false) {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         std::cerr << "Could not initialise SDL: " << SDL_GetError() << std::endl;
+        abort();
+    }
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        std::cerr << "Could not open audio: " << Mix_GetError() << std::endl;
         abort();
     }
 
@@ -26,15 +31,31 @@ Game::Game() : m_isRunning(false) {
     }
 
     m_screenSurface = SDL_GetWindowSurface(m_window);
+
+    m_music = Mix_LoadMUS("assets/music.wav");
+
+    if (m_music == NULL) {
+        std::cerr << "Could not load music: " << SDL_GetError() << std::endl;
+        abort();
+    }
+
+    m_billGates.Load(m_renderer);
 }
 
 Game::~Game() {
+    Mix_FreeMusic(m_music);
+
     SDL_DestroyWindow(m_window);
+    
+    Mix_Quit();
+    IMG_Quit();
     SDL_Quit();
 }
 
 void Game::Run() {
     m_isRunning = true;
+
+    Mix_PlayMusic(m_music, -1);
 
     SDL_Event e;
 
@@ -46,15 +67,26 @@ void Game::Run() {
             }
         }
 
-        SDL_RenderClear(m_renderer);
-        SDL_SetRenderDrawColor(m_renderer, 15, 18, 38, 255);
-
-        SDL_RenderFillRect(m_renderer, NULL);
-
-        SDL_RenderPresent(m_renderer);
+        Update();
+        Draw();
     }
 }
 
 void Game::Stop() {
     m_isRunning = false;
+}
+
+void Game::Update() {
+
+}
+
+void Game::Draw() {
+    SDL_RenderClear(m_renderer);
+    SDL_SetRenderDrawColor(m_renderer, 15, 18, 38, 255);
+
+    SDL_RenderFillRect(m_renderer, NULL);
+
+    m_billGates.Draw();
+
+    SDL_RenderPresent(m_renderer);
 }
