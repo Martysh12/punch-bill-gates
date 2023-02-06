@@ -22,7 +22,7 @@ void BillGates::Load(SDL_Renderer* renderer) {
     m_texture = SDL_CreateTextureFromSurface(m_renderer, temporarySurface);
 
     if (m_texture == NULL) {
-        std::cerr << "Couldn't load Bill Gates's Texture: " << SDL_GetError() << std::endl;
+        std::cerr << "Couldn't load Bill Gates's texture: " << SDL_GetError() << std::endl;
         abort();
     }
 
