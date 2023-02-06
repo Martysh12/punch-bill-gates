@@ -28,6 +28,6 @@ public:
     void Run();
     void Stop();
     
-    void Update();
+    void Update(float dt);
     void Draw();
 };

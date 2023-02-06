@@ -57,17 +57,32 @@ void Game::Run() {
 
     Mix_PlayMusic(m_music, -1);
 
-    SDL_Event e;
+    long long timeNow = SDL_GetPerformanceCounter();
+    long long timeLast = 0;
+    float dt = 0.0f;
 
+    SDL_Event e;
     while (m_isRunning) {
         while (SDL_PollEvent(&e)) {
             switch (e.type) {
             case SDL_QUIT:
                 Stop();
+                break;
+            case SDL_KEYDOWN:
+                switch (e.key.keysym.sym) {
+                case SDLK_SPACE:
+                    if (!e.key.repeat) m_billGates.Punch();
+                    break;
+                }
+                break;
             }
         }
 
-        Update();
+        timeLast = timeNow;
+        timeNow = SDL_GetPerformanceCounter();
+        dt = static_cast<float>(timeNow - timeLast) / static_cast<float>(SDL_GetPerformanceFrequency());
+
+        Update(dt);
         Draw();
     }
 }
@@ -76,8 +91,8 @@ void Game::Stop() {
     m_isRunning = false;
 }
 
-void Game::Update() {
-
+void Game::Update(float dt) {
+    m_billGates.Update(dt);
 }
 
 void Game::Draw() {

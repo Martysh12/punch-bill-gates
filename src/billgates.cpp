@@ -1,6 +1,6 @@
 #include "billgates.h"
 
-BillGates::BillGates() {
+BillGates::BillGates() : m_punchTimer(0.f) {
 }
 
 BillGates::~BillGates() {
@@ -36,11 +36,26 @@ void BillGates::Unload() {
     if (m_texture != NULL) SDL_DestroyTexture(m_texture);
 }
 
-void BillGates::Update() {
+void BillGates::Update(float dt) {
 
+    if      (m_punchTimer > 0) m_punchTimer -= dt;
+    else if (m_punchTimer < 0) m_punchTimer = 0;
 }
 
 void BillGates::Draw() {
-    SDL_Rect renderQuad = {0, 0, m_textureWidth, m_textureHeight};
+    float punchTimerProgress = m_punchTimer / Constants::billGatesPunchDuration;
+
+    SDL_SetTextureColorMod(
+        m_texture,
+        255,
+        lerp(255, 64, punchTimerProgress),
+        lerp(255, 64, punchTimerProgress)
+    );
+
+    SDL_Rect renderQuad = {static_cast<int>(sin(20 * M_PI * punchTimerProgress) * punchTimerProgress * 4), 0, m_textureWidth, m_textureHeight};
     SDL_RenderCopy(m_renderer, m_texture, NULL, &renderQuad);
+}
+
+void BillGates::Punch() {
+    m_punchTimer = Constants::billGatesPunchDuration;
 }
