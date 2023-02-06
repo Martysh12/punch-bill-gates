@@ -40,6 +40,7 @@ Game::Game() : m_isRunning(false) {
     }
 
     m_billGates.Load(m_renderer);
+    m_hand.Load(m_renderer);
 }
 
 Game::~Game() {
@@ -71,7 +72,9 @@ void Game::Run() {
             case SDL_KEYDOWN:
                 switch (e.key.keysym.sym) {
                 case SDLK_SPACE:
-                    if (!e.key.repeat) m_billGates.Punch();
+                    if (!e.key.repeat) {
+                        m_hand.Punch();
+                    }
                     break;
                 }
                 break;
@@ -92,7 +95,12 @@ void Game::Stop() {
 }
 
 void Game::Update(float dt) {
+    if (m_hand.IsPunching()) {
+        m_billGates.Punch();
+    }
+
     m_billGates.Update(dt);
+    m_hand.Update(dt);
 }
 
 void Game::Draw() {
@@ -102,6 +110,7 @@ void Game::Draw() {
     SDL_RenderFillRect(m_renderer, NULL);
 
     m_billGates.Draw();
+    m_hand.Draw();
 
     SDL_RenderPresent(m_renderer);
 }

@@ -2,6 +2,7 @@
 
 #include "constants.h"
 #include "billgates.h"
+#include "hand.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
@@ -18,6 +19,7 @@ class Game
     Mix_Music* m_music;
 
     BillGates m_billGates;
+    Hand m_hand;
 
     bool m_isRunning;
 

@@ -9,4 +9,5 @@ public:
     static const int screenHeight;
 
     static const float billGatesPunchDuration;
+    static const float handPunchDuration;
 };

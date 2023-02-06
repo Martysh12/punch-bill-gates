@@ -3,6 +3,7 @@ set(SOURCES
     constants.cpp
     game.cpp
     billgates.cpp
+    hand.cpp
 )
 
 add_executable(pbg ${SOURCES})
