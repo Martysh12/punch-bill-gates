@@ -48,8 +48,8 @@ void BillGates::Draw() {
     SDL_SetTextureColorMod(
         m_texture,
         255,
-        lerp(255, 64, punchTimerProgress),
-        lerp(255, 64, punchTimerProgress)
+        std::lerp(255, 64, punchTimerProgress),
+        std::lerp(255, 64, punchTimerProgress)
     );
 
     SDL_Rect renderQuad = {static_cast<int>(sin(20 * M_PI * punchTimerProgress) * punchTimerProgress * 8), 0, m_textureWidth, m_textureHeight};
