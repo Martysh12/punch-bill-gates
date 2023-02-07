@@ -3,6 +3,7 @@
 #include "constants.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_image.h>
 
 #include <cmath>
@@ -15,6 +16,8 @@ class Hand
 
     int m_textureWidth, m_textureHeight;
     SDL_Texture* m_texture;
+
+    Mix_Chunk* m_punch;
 
     char m_handFrame;
     float m_punchTimer;

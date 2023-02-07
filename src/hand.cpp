@@ -26,6 +26,13 @@ void Hand::Load(SDL_Renderer* renderer){
         abort();
     }
 
+    m_punch = Mix_LoadWAV("assets/punch.wav");
+
+    if (m_punch == NULL) {
+        std::cerr << "Couldn't load punch sound: " << SDL_GetError() << std::endl;
+        abort();
+    }
+
     m_textureWidth = temporarySurface->w;
     m_textureHeight = temporarySurface->h;
 
@@ -34,6 +41,7 @@ void Hand::Load(SDL_Renderer* renderer){
 
 void Hand::Unload() {
     if (m_texture != NULL) SDL_DestroyTexture(m_texture);
+    if (m_punch != NULL) Mix_FreeChunk(m_punch);
 }
 
 void Hand::Update(float dt) {
@@ -119,6 +127,7 @@ void Hand::Punch() {
 
 bool Hand::IsPunching() {
     if (m_isPunching) {
+        Mix_PlayChannel(-1, m_punch, 0);
         m_isPunching = false;
         return true;
     } else {
